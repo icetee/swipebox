@@ -17,6 +17,7 @@
 				vimeoColor : 'cccccc',
 				beforeOpen: null,
 				afterOpen: null,
+                		title:  null,
 				afterClose: null,
 				loopAtEnd: false,
 				autoplayVideos: false,
@@ -108,24 +109,18 @@
 					}
 
 					$elem.each( function() {
+ 
+						var $this = $(this);
+                        
+				        var href = $this.attr( 'href' ) || null;
 
-						var title = null,
-							href = null;
-
-						if ( $( this ).attr( 'title' ) ) {
-							title = $( this ).attr( 'title' );
-						}
-
-
-						if ( $( this ).attr( 'href' ) ) {
-							href = $( this ).attr( 'href' );
-						}
+				        var title = $this.attr( 'data-title' ) || $this.attr( 'title' ) || plugin.settings.title;
 
 						elements.push( {
 							href: href,
 							title: title
 						} );
-					} );
+					} ); 
 
 					index = $elem.index( $( this ) );
 					event.preventDefault();
